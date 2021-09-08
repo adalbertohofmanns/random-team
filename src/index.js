@@ -80,7 +80,7 @@ class RandonTeam extends Component {
           </Alert>
           <Form.Group className="mb-3">
             <Form.Control placeholder="Cole aqui!" as="textarea" rows={8} onChange={this.setPlayers} />
-            <Button className="mt-3" disabled={this.state.blocked} onClick={this.randomize}>Selecionar time</Button>
+            <Button className="mt-3" disabled={this.state.blocked} onClick={this.randomize}>Sortear Times e reservas</Button>
           </Form.Group>
         </Container>
 

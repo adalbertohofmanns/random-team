@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Randon Team",
+  "name": "Sorteia aleatóriamente os times com no máximo 12 participantes seis para cada lado, escolhendo os reservas tbm",
+  "author": "Adalberto Hofmann",
   "icons": [
     {
       "src": "favicon.ico",
