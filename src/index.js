@@ -12,26 +12,42 @@ class RandonTeam extends Component {
   };
 
   setPlayers = (event) => {
+    console.log("target value")
+    console.log(event.target.value)
+
     this.setState({
       players: event.target.value
     });
 
-    const listOfPlayers = this.state.players.split("\n")
+    this.blockBtn();
 
-    if (listOfPlayers.length >= 12) {
+  };
+
+  blockBtn = () => {
+    const qtd = this.getPlayers();
+    if (qtd.length >= 12) {
       this.setState({
         blocked: false
       });
     }
+    if (qtd.length < 12) {
+      this.setState({
+        blocked: true
+      });
+    }
+  };
 
-    this.setState({
-      sortedPlayers: listOfPlayers
-    });
+  getPlayers = () => {
+    const arrayOfPlayers = this.state.players.split("\n")
+
+    return arrayOfPlayers
   };
 
   randomize = () => {
+    const listOfPlayers = this.getPlayers();
+
     this.setState({
-      sortedPlayers: this.state.sortedPlayers.sort(() => Math.random() - 0.9)
+      sortedPlayers: listOfPlayers.sort(() => Math.random() - 0.9)
     });
   };
 
@@ -39,7 +55,7 @@ class RandonTeam extends Component {
     const impares = this.state.sortedPlayers.slice(0, 12)
     return (
       impares.map((name, key) =>
-        key % 2 == 0 &&
+        key % 2 === 0 &&
         <tr key={key}>
           <td>{name}</td>
         </tr>
@@ -52,7 +68,7 @@ class RandonTeam extends Component {
     const pares = this.state.sortedPlayers.slice(0, 12)
     return (
       pares.map((name, key) =>
-        key % 2 != 0 &&
+        key % 2 !== 0 &&
         <tr key={key}>
           <td>{name}</td>
         </tr>
@@ -60,7 +76,7 @@ class RandonTeam extends Component {
     )
   };
 
-  reservas= () => {
+  reservas = () => {
     const reservas = this.state.sortedPlayers.slice(12, 99)
     return (
       reservas.map((name, key) =>
@@ -76,7 +92,10 @@ class RandonTeam extends Component {
       <React.StrictMode>
         <Container>
           <Alert variant="success" className="mt-3 text-center">
-            <Alert.Heading>Óbito Futebol Clube</Alert.Heading>
+            <Alert.Heading>Veteranos Fut. sub-óbito!</Alert.Heading>
+            <p>
+              Adicione um nome abaixo do outro, no minimo 12 nomes para dar jogo!
+            </p>
           </Alert>
           <Form.Group className="mb-3">
             <Form.Control placeholder="Cole aqui!" as="textarea" rows={8} onChange={this.setPlayers} />
